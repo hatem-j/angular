@@ -1,28 +1,43 @@
-[![CircleCI](https://circleci.com/gh/angular/angular/tree/master.svg?style=shield)](https://circleci.com/gh/angular/workflows/angular/tree/master)
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=LzF3RzBVVGt6VWE2S0hHaC9uYllOZz09LS1BVjNTclBKV0x4eVRlcjA4QVY1M0N3PT0=--eb4ce8c8dc2c1c5b2b5352d473ee12a73ac20e06)](https://www.browserstack.com/automate/public-build/LzF3RzBVVGt6VWE2S0hHaC9uYllOZz09LS1BVjNTclBKV0x4eVRlcjA4QVY1M0N3PT0=--eb4ce8c8dc2c1c5b2b5352d473ee12a73ac20e06)
-[![Join the chat at https://gitter.im/angular/angular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular/angular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![npm version](https://badge.fury.io/js/%40angular%2Fcore.svg)](https://www.npmjs.com/@angular/core)
+# Python program for counting sort 
+
+# The main function that sort the given string arr[] in 
+# alphabetical order 
+def countSort(arr): 
+
+	# The output character array that will have sorted arr 
+	output = [0 for i in range(256)] 
+
+	# Create a count array to store count of inidividul 
+	# characters and initialize count array as 0 
+	count = [0 for i in range(256)] 
+
+	# For storing the resulting answer since the 
+	# string is immutable 
+	ans = ["" for _ in arr] 
+
+	# Store count of each character 
+	for i in arr: 
+		count[ord(i)] += 1
+
+	# Change count[i] so that count[i] now contains actual 
+	# position of this character in output array 
+	for i in range(256): 
+		count[i] += count[i-1] 
+
+	# Build the output character array 
+	for i in range(len(arr)): 
+		output[count[ord(arr[i])]-1] = arr[i] 
+		count[ord(arr[i])] -= 1
+
+	# Copy the output array to arr, so that arr now 
+	# contains sorted characters 
+	for i in range(len(arr)): 
+		ans[i] = output[i] 
+	return ans 
+
+# Driver program to test above function 
+arr = "geeksforgeeks"
+ans = countSort(arr) 
+print "Sorted character array is %s" %("".join(ans)) 
 
 
-# Angular
-
-Angular is a development platform for building mobile and desktop web applications using TypeScript/JavaScript and other languages.
-
-## Quickstart
-
-[Get started in 5 minutes][quickstart].
-
-## Changelog
-
-[Learn about the latest improvements][changelog].
-
-## Want to help?
-
-Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our
-guidelines for [contributing][contributing] and then check out one of our issues in the [hotlist: community-help](https://github.com/angular/angular/labels/hotlist%3A%20community-help).
-
-[browserstack]: https://www.browserstack.com/automate/public-build/LzF3RzBVVGt6VWE2S0hHaC9uYllOZz09LS1BVjNTclBKV0x4eVRlcjA4QVY1M0N3PT0=--eb4ce8c8dc2c1c5b2b5352d473ee12a73ac20e06
-[contributing]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md
-[quickstart]: https://angular.io/start
-[changelog]: https://github.com/angular/angular/blob/master/CHANGELOG.md
-[ng]: https://angular.io
